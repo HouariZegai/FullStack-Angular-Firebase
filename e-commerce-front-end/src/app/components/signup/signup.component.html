@@ -2,7 +2,6 @@
 <form #f="ngForm" (ngSubmit)="onSignup(f)">
     <input ngModel #name="ngModel" name="name" type="text" class="form-control" placeholder="Your name" required>
     <div class="alert alert-danger" *ngIf="name.touched && name.invalid">Your name is required!</div>
-
     <input ngModel #email="ngModel" name="email" type="email" class="form-control" placeholder="Email" required email>
     <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email is required!</div>
     <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">Your input doesn't match email format!</div>

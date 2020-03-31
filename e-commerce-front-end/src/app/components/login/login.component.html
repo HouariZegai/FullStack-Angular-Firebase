@@ -1,1 +1,11 @@
 <h2 class="text-center">Sign In</h2>
+<form #f="ngForm" (ngSubmit)="onLogin(f)">
+    <input ngModel #email="ngModel" name="email" type="email" class="form-control" placeholder="Email" required email>
+    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email is required!</div>
+    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">Your input doesn't match email format!</div>
+
+    <input ngModel #pass="ngModel" name="password" type="password" class="form-control" placeholder="Password" required minlength="4">
+    <div class="alert alert-danger" *ngIf="pass.touched && pass.errors?.required">Password is required!</div>
+    <div class="alert alert-danger" *ngIf="pass.touched && pass.errors?.minlength">Please, enter atleast 4 character!</div>
+    <button class="btn btn-primary" [disabled]="email.invalid || pass.invalid">Login</button>
+</form>
