@@ -2,7 +2,10 @@ import { NavComponent } from './components/nav/nav.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -28,7 +31,18 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAq4gbdIx6maLsJsXBoKx6hxx4kGq2t0ww",
+      authDomain: "market-e6b99.firebaseapp.com",
+      databaseURL: "https://market-e6b99.firebaseio.com",
+      projectId: "market-e6b99",
+      storageBucket: "market-e6b99.appspot.com",
+      messagingSenderId: "603331342037",
+      appId: "1:603331342037:web:a7f7a5c153bd3b93b1bc5c",
+      measurementId: "G-7GV4EX57RE"
+    }),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
