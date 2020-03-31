@@ -1,1 +1,22 @@
-<p>signup works!</p>
+<h2 class="text-center">Sign Up</h2>
+<form #f="ngForm" (ngSubmit)="onSignup(f)">
+    <input ngModel #name="ngModel" name="name" type="text" class="form-control" placeholder="Your name" required>
+    <div class="alert alert-danger" *ngIf="name.touched && name.invalid">Your name is required!</div>
+
+    <input ngModel #email="ngModel" name="email" type="email" class="form-control" placeholder="Email" required email>
+    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email is required!</div>
+    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">Your input doesn't match email format!</div>
+
+    <input ngModel #pass="ngModel" name="password" type="password" class="form-control" placeholder="Password" required minlength="4">
+    <div class="alert alert-danger" *ngIf="pass.touched && pass.errors?.required">Password is required!</div>
+    <div class="alert alert-danger" *ngIf="pass.touched && pass.errors?.minlength">Please, enter atleast 4 character!</div>
+
+    <input ngModel #confirmPass="ngModel" name="confirmPassword" type="password" class="form-control" placeholder="Confirm Password" required>
+    <div class="alert alert-danger" *ngIf="confirmPass.touched && confirmPass.errors?.required">Confirm password required!</div>
+    <div class="alert alert-danger" *ngIf="confirmPass.touched && pass.value != confirmPass.value">Confirm Password are not equal to password!</div>
+
+    <textarea ngModel #address="ngModel" name="address" class="form-control" placeholder="Address" required></textarea>
+    <div class="alert alert-danger" *ngIf="address.touched && address.errors?.required">Address is required!</div>
+
+    <button class="btn btn-primary" [disabled]="f.invalid || pass.value != confirmPass.value">Create Account</button>
+</form>

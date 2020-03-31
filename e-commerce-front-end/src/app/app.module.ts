@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { GoodsComponent } from './components/goods/goods.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
