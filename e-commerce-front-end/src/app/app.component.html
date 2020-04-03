@@ -1,4 +1,6 @@
 <app-nav></app-nav>
 <div class="container">
-    <router-outlet></router-outlet>
+    <div class="router-container" [@router]="myOutlet.activatedRouteData['index']">
+        <router-outlet #myOutlet="outlet"></router-outlet>
+    </div>
 </div>

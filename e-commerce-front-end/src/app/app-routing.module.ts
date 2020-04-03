@@ -9,11 +9,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "login", component: LoginComponent },
-  { path: "signup", component: SignupComponent },
-  { path: "cart", component: CartComponent, canActivate: [AuthGuardService] },
-  { path: "admin", component: ProductsComponent, canActivate: [AuthGuardService] },
+  { path: "", component: HomeComponent, data: {index: 0} },
+  { path: "cart", component: CartComponent, canActivate: [AuthGuardService], data: {index: 1} },
+  { path: "admin", component: ProductsComponent, canActivate: [AuthGuardService], data: {index: 2} },
+  { path: "signup", component: SignupComponent, data: {index: 3} },
+  { path: "login", component: LoginComponent, data: {index: 4} },
   { path: "**", component: NotFoundComponent }
 ];
 

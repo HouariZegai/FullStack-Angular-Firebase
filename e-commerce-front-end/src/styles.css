@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.router-container {
+    position: relative;
+}
+
+.router-container > * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}
