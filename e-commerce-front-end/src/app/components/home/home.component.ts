@@ -1,8 +1,10 @@
+import { AuthService } from './../../services/auth.service';
 import { CartService } from './../../services/cart.service';
 import { ProductsService } from './../../services/products.service';
 import { Product } from '../../interfaces/product.interface';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   productObservable: Subscription
   add: number = -1 // for view qte & buy button
 
-  constructor(private productsService: ProductsService, private cartSer: CartService) { }
+  constructor(private productsService: ProductsService, private cartSer: CartService, private autSer: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.productObservable = this.productsService.getAllProducts().subscribe(data => {
@@ -35,9 +37,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
  
   addToCart(index: number) {
-    this.add = index
-
-    console.log('add to cart', index)
+    if(this.autSer.userId)
+      this.add = index
+    else
+      this.router.navigate(['/login'])
+    // console.log('add to cart', index)
   }
 
   buy(amount: number) {
