@@ -7,15 +7,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { GoodsComponent } from './components/goods/goods.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,9 @@ import { FormsModule } from '@angular/forms';
     CartComponent,
     LoginComponent,
     SignupComponent,
-    GoodsComponent,
     NotFoundComponent,
-    NavComponent
+    NavComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +45,8 @@ import { FormsModule } from '@angular/forms';
       measurementId: "G-7GV4EX57RE"
     }),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
