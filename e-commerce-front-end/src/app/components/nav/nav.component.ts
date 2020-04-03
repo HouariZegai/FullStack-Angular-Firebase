@@ -19,8 +19,10 @@ export class NavComponent implements OnInit {
       if(user) {
         this.isUserLogin = true
         this.authSer.userId = user.uid
-      } else
+      } else {
         this.isUserLogin = false
+        this.authSer.userId = null
+      }
     })
   }
 

@@ -1,5 +1,6 @@
+import { CartService } from './../../services/cart.service';
 import { ProductsService } from './../../services/products.service';
-import { Product } from './../../interfaces/product';
+import { Product } from '../../interfaces/product.interface';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -12,8 +13,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   products: Array<Product> = []
   productObservable: Subscription
+  add: number = -1 // for view qte & buy button
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private cartSer: CartService) { }
 
   ngOnInit(): void {
     this.productObservable = this.productsService.getAllProducts().subscribe(data => {
@@ -32,8 +34,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.productObservable.unsubscribe()
   }
  
-  addToCart(id) {
-    console.log('add to cart', id)
+  addToCart(index: number) {
+    this.add = index
+
+    console.log('add to cart', index)
+  }
+
+  buy(amount: number) {
+    let selectedProduct = this.products[this.add]
+    let data = {
+      name: selectedProduct.name,
+      amount: +amount,
+      price: selectedProduct.price,
+    }
+    this.cartSer.addToCart(data)
+    .then(result => this.add = -1)
+    .catch(err => console.log('err', err))
   }
 
 }

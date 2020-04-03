@@ -1,5 +1,5 @@
 import { UserService } from './../../services/user.service';
-import { User } from './../../interfaces/User';
+import { User } from '../../interfaces/User.interface';
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -30,7 +30,6 @@ export class SignupComponent {
     })
     .catch(err => {
       this.errorMsg = err.message
-      console.log('auth', err)
     })
   }
 
