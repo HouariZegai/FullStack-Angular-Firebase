@@ -19,3 +19,4 @@
 
     <button class="btn btn-primary" [disabled]="f.invalid || pass.value != confirmPass.value">Create Account</button>
 </form>
+<div class="alert alert-danger" *ngIf="errorMsg != null">{{ errorMsg }}</div>

@@ -1,20 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { UserService } from './../../services/user.service';
+import { User } from './../../interfaces/User';
+import { AuthService } from './../../services/auth.service';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
 
-  constructor() { }
+  errorMsg: string
 
-  ngOnInit(): void {
-  }
+  constructor(private authSer: AuthService, private userSer: UserService, private router: Router) { }
 
   onSignup(f: NgForm) {
-    console.log(f)
+    let data: User = f.value
+    this.authSer.signup(data.email, data.password)
+    .then(result => {
+      this.errorMsg = null
+      
+    this.userSer.addNewUser(result.user.uid, data.name, data.address)
+      .then(result => {
+        this.router.navigate(['/'])
+      })
+      .catch(err => console.log('register user data (firestore)', err.message))
+    })
+    .catch(err => {
+      this.errorMsg = err.message
+      console.log('auth', err)
+    })
   }
 
 }

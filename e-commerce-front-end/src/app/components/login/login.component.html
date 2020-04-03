@@ -9,3 +9,4 @@
     <div class="alert alert-danger" *ngIf="pass.touched && pass.errors?.minlength">Please, enter atleast 4 character!</div>
     <button class="btn btn-primary" [disabled]="email.invalid || pass.invalid">Login</button>
 </form>
+<div class="alert alert-danger" *ngIf="errorMsg != null">{{ errorMsg }}</div>
