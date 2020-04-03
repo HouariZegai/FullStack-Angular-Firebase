@@ -9,6 +9,6 @@ export class ProductsService {
   constructor(private firestore: AngularFirestore) { }
 
   getAllProducts() {
-    return this.firestore.collection('products').valueChanges()
+    return this.firestore.collection('products').snapshotChanges()
   }
 }
