@@ -10,10 +10,18 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
 
   isOpen: boolean = false
+  isUserLogin: boolean = false
 
   constructor(private authSer: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authSer.user.subscribe(user => {
+      if(user) {
+        this.isUserLogin = true
+        this.authSer.userId = user.uid
+      } else
+        this.isUserLogin = false
+    })
   }
 
   tglNavbar() {
